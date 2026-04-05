@@ -1,0 +1,20 @@
+@keyframes slideLeft {
+ from {opacity:0; transform:translateX(-100px);}
+ to {opacity:1; transform:translateX(0);}
+}
+
+@keyframes slideRight {
+ from {opacity:0; transform:translateX(100px);}
+ to {opacity:1; transform:translateX(0);}
+}
+
+.row {
+ opacity:0;
+ animation-duration:1s;
+ animation-fill-mode:forwards;
+}
+
+.row:nth-child(1){ animation-name:slideLeft; animation-delay:0.2s;}
+.row:nth-child(2){ animation-name:slideRight; animation-delay:0.6s;}
+.row:nth-child(3){ animation-name:slideLeft; animation-delay:1s;}
+.row:nth-child(4){ animation-name:slideRight; animation-delay:1.4s;}

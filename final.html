@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>С Днём Рождения!</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="27" viewBox="0 0 24 27"><path fill="%23a5b4fc" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto;
+  }
+  body {
+    background: radial-gradient(circle at 30% 10%, #0a0f2a, #030617);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Playfair Display', 'Montserrat', sans-serif;
+    position: relative;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: starTwinkle 3s infinite;
+  }
+  @keyframes starTwinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+  .center-card {
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(16px);
+    padding: 60px 70px;
+    border-radius: 70px;
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 20;
+    animation: pulseGlow 3s infinite alternate;
+  }
+  @keyframes pulseGlow {
+    from { box-shadow: 0 0 20px rgba(90,107,255,0.2); }
+    to { box-shadow: 0 0 70px rgba(90,107,255,0.6); }
+  }
+  h1 {
+    font-size: 56px;
+    background: linear-gradient(135deg, #fff, #a5b4fc, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+  }
+  .subtitle {
+    font-size: 28px;
+    color: #e0e7ff;
+    margin-top: 10px;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  button {
+    margin-top: 40px;
+    padding: 14px 45px;
+    border-radius: 60px;
+    border: none;
+    background: linear-gradient(135deg, #5a6bff, #8aa0ff);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .fire-particle {
+    position: absolute;
+    font-size: 28px;
+    pointer-events: none;
+    animation: boomFly 1.5s ease-out forwards;
+    z-index: 10;
+  }
+  @keyframes boomFly {
+    0% { opacity: 1; transform: scale(0.2); }
+    100% { opacity: 0; transform: scale(1.8) translateY(-60px); }
+  }
+  .confetti {
+    position: absolute;
+    width: 8px;
+    height: 14px;
+    animation: confettiDrop 2.5s linear forwards;
+  }
+  @keyframes confettiDrop {
+    0% { transform: translateY(-20vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="center-card">
+  <h1>🎂 С ДНЁМ РОЖДЕНИЯ 🎂</h1>
+  <div class="subtitle">💜 С днём рождения, Дракоша 💜</div>
+  <button onclick="location.href='gift-hunt.html'">🎁 Дальше → 🎁</button>
+</div>
+
+<script>
+  for(let i = 0; i < 250; i++) {
+    let s = document.createElement('div');
+    s.className = 'star';
+    let size = Math.random() * 3 + 1;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = Math.random() * 4 + 's';
+    document.body.appendChild(s);
+  }
+
+  function burst() {
+    const emojis = ['💜', '💙', '💖', '✨', '🎆', '🎇', '💗', '🌟', '🎂', '🎁'];
+    const colors = ['#5a6bff', '#c084fc', '#f472b6', '#34d399', '#ffaa44'];
+    for(let i = 0; i < 50; i++) {
+      let p = document.createElement('div');
+      p.className = 'fire-particle';
+      p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 70 + 20 + '%';
+      p.style.fontSize = (Math.random() * 24 + 18) + 'px';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 1500);
+    }
+    for(let i = 0; i < 80; i++) {
+      let conf = document.createElement('div');
+      conf.className = 'confetti';
+      conf.style.left = Math.random() * 100 + '%';
+      conf.style.top = '-20px';
+      conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      conf.style.width = Math.random() * 10 + 4 + 'px';
+      conf.style.height = Math.random() * 16 + 6 + 'px';
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 3000);
+    }
+  }
+  setInterval(burst, 900);
+  burst();
+</script>
+<script src="music.js"></script>
+</body>
+</html>

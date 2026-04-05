@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Найди подарок!</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background: linear-gradient(135deg, #d4e4f7 0%, #c5d9f0 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+  }
+  .gift {
+    position: absolute;
+    font-size: 72px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 12px gold);
+    animation: pulse 0.6s infinite alternate;
+    transition: left 0.4s ease-out, top 0.4s ease-out;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.2);
+    border-radius: 60px;
+    z-index: 100;
+  }
+  @keyframes pulse {
+    from { transform: scale(1); text-shadow: 0 0 2px gold; }
+    to { transform: scale(1.1); text-shadow: 0 0 20px orange; }
+  }
+  .message-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(16px);
+    border-radius: 48px;
+    padding: 40px 50px;
+    text-align: center;
+    z-index: 200;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    display: none;
+    max-width: 90%;
+  }
+  .message-card p {
+    font-size: 24px;
+    margin: 20px 0;
+    color: #2c3e6e;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: 40px;
+    background: #5a6bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+  }
+  .hint {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    z-index: 50;
+  }
+  .telegram-hint {
+    background: #e6f0ff;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="gift" id="gift">🎁</div>
+<div class="hint">🎯 Нажми на подарок!</div>
+
+<div class="message-card" id="messageCard">
+  <p>🎉 Что ж, ты молодец, а теперь прям вооооот тут твой самый основной подарок...</p>
+  
+  <div class="telegram-hint">
+    📲 <strong>Твой подарок уже в Ватсап</strong><br>
+    Открой чат со мной — там видео
+  </div>
+  
+  <button onclick="location.href='the-end.html'">✨ Дальше ✨</button>
+</div>
+
+<script src="music.js"></script>
+<script>
+  const gift = document.getElementById('gift');
+  let gameActive = true;
+
+  function moveGift() {
+    if (!gameActive) return;
+    const maxX = window.innerWidth - 140;
+    const maxY = window.innerHeight - 140;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    gift.style.left = x + 'px';
+    gift.style.top = y + 'px';
+  }
+
+  // Скорость: 950 мс (чуть быстрее, но плавно)
+  setInterval(moveGift, 900);
+
+  gift.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!gameActive) return;
+    gameActive = false;
+    gift.style.display = 'none';
+    document.getElementById('messageCard').style.display = 'block';
+  });
+
+  gift.style.cursor = 'pointer';
+</script>
+
+</body>
+</html>

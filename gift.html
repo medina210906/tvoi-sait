@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Подарок</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #d4e4f7, #c5d9f0);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    cursor: pointer;
+  }
+  div {
+    text-align: center;
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+</style>
+</head>
+<body>
+<div id="gift">🎁</div>
+<script>
+  document.getElementById('gift').onclick = () => {
+    window.location.href = 'http://192.168.1.69';
+  };
+</script>
+</body>
+</html>
